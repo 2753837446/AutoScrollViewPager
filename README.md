@@ -61,4 +61,5 @@ AutoBuilder.Builder(viewPager, list, new AutoListener<String>() {
 ```
 
 >后续预计更新, 添加多样式ViewPager支持, 打造炫酷的切换动画
+
 >添加小圆点支持
