@@ -16,3 +16,5 @@ AutoBuilder.Builder(viewPager, list, new SimpleAutoListener<String>() {
                 .setAutomatic(true)
                 .build();
 ```
+
+>后续预计更新, 添加多样式ViewPager支持, 打造炫酷的切换动画
