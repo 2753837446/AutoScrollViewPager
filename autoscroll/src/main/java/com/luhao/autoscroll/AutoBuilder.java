@@ -9,7 +9,7 @@ import android.util.Log;
 import java.util.List;
 
 /**
- * Created by luhao
+ * @author  by luhao
  * Date: 2017/12/21.
  */
 
@@ -139,6 +139,13 @@ public class AutoBuilder<T> {
             if (state == 0 && autoLoop && nextPage != 127) {
                 mViewPager.setCurrentItem(nextPage, smoothScroll);
                 nextPage = 127;
+                if (automatic) {
+                    mHandler.sendEmptyMessageDelayed(100, scrollTime);
+                }
+            } else {
+                if (automatic) {
+                    mHandler.removeMessages(100);
+                }
             }
             mAutoListener.onPageScrollStateChanged(state);
         }

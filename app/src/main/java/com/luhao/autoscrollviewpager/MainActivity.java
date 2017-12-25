@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.luhao.autoscroll.AutoBuilder;
-import com.luhao.autoscroll.SimpleAutoListener;
+import com.luhao.autoscroll.AutoListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,16 +26,36 @@ public class MainActivity extends AppCompatActivity {
         list.add("2");
         list.add("3");
         list.add("4");
-        AutoBuilder.Builder(viewPager, list, new SimpleAutoListener<String>() {
+        AutoBuilder.Builder(viewPager, list, new AutoListener<String>() {
+            //初始化ViewPagerItem
             @Override
             public View initItemView(int position, String o) {
                 TextView textView = new TextView(MainActivity.this);
                 textView.setText(o);
                 return textView;
             }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+
+            }
         })
+                //设置循环开启  默认开启
                 .setAutoLoop(true)
+                //设置自动循环开启  默认关闭, 循环必须开启
                 .setAutomatic(true)
+                //设置循环切换时间  默认3000
+                .setScrollTime(3000)
                 .build();
 
     }
