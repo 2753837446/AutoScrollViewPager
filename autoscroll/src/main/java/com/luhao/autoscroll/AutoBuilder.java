@@ -5,12 +5,14 @@ import android.os.Looper;
 import android.os.Message;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
+import android.view.MotionEvent;
+import android.view.View;
 
 import java.util.List;
 
 /**
- * @author  by luhao
- * Date: 2017/12/21.
+ * @author by luhao
+ *         Date: 2017/12/21.
  */
 
 public class AutoBuilder<T> {
@@ -100,6 +102,26 @@ public class AutoBuilder<T> {
             automatic = false;
         }
         mViewPager.addOnPageChangeListener(onPageChangeListener);
+        mViewPager.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        if (automatic) {
+                            mHandler.removeMessages(100);
+                        }
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        if (automatic) {
+                            mHandler.sendEmptyMessageDelayed(100, scrollTime);
+                        }
+                        break;
+                    default:
+                        break;
+                }
+                return false;
+            }
+        });
         mViewPager.setAdapter(new AutoAdapter<>(mParams, autoLoop, mAutoListener));
         if (mParams.size() > 1 && autoLoop) {
             mViewPager.setCurrentItem(1, false);
@@ -139,13 +161,9 @@ public class AutoBuilder<T> {
             if (state == 0 && autoLoop && nextPage != 127) {
                 mViewPager.setCurrentItem(nextPage, smoothScroll);
                 nextPage = 127;
-                if (automatic) {
-                    mHandler.sendEmptyMessageDelayed(100, scrollTime);
-                }
+
             } else {
-                if (automatic) {
-                    mHandler.removeMessages(100);
-                }
+
             }
             mAutoListener.onPageScrollStateChanged(state);
         }
