@@ -7,6 +7,7 @@ repositories {
         maven { url "https://jitpack.io" }
    }
    dependencies {
+        compile 'com.github.2753837446:AutoScrollViewPager:v1.0'
    }
 """
 
