@@ -1,5 +1,15 @@
 # AutoScrollViewPager
 
+
+"""
+repositories {
+        jcenter()
+        maven { url "https://jitpack.io" }
+   }
+   dependencies {
+   }
+"""
+
 ### 最方便的可自动无限循环ViewPager插件, 完全适用于ViewPager
 
 #### 使用方法
