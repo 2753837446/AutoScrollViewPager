@@ -1,6 +1,9 @@
 # AutoScrollViewPager
 
 
+[![](https://jitpack.io/v/2753837446/NumberTextView.svg)](https://jitpack.io/#2753837446/NumberTextView)
+
+
 """
 repositories {
         jcenter()
